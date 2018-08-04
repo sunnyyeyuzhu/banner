@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;list-style:none;}
+		#banner{width:600px;height:300px;margin:100px auto 0;overflow:hidden;position:relative;}
+		#bannerul{position:absolute;}
+		#bannerul li{width:600px;height:300px;float:left;}
+		#bannerul li img{width:100%;height:100%;}
+	
+		#pre,#next{display:block;width:50px;height:50px;background:black;z-index:1;cursor:pointer;}
+		#pre{position:absolute;left:0;top:125px;}
+		#next{position:absolute;right:0;top:125px;}
+	</style>
+</head>
+<body>
+	<div id="banner">
+		<span id="pre"></span>
+		<span id="next"></span>
+		<ul id="bannerul">
+			<li><img src="images/imga.jpg"></li>
+			<li><img src="images/imgb.jpg"></li>
+			<li><img src="images/imgc.jpg"></li>
+			<li><img src="images/imgd.jpg"></li>
+		</ul>
+	</div>
+
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			var wid=$("#banner").width();
+			var count=0;
+			var alllength=$("#bannerul li").length;
+			var left=0;
+			var movewidth=alllength*wid;
+			$("#bannerul").width(movewidth);
+			$("#pre").click(function(){
+				count--;
+				if(count<0){
+					$("#bannerul").animate({'left':-parseInt((alllength-1)*wid)+'px'},function(){
+						count=alllength-1;
+					})
+					
+				}
+				else{
+					$("#bannerul").animate({'left':-parseInt(count*wid)+'px'});
+				}
+			})
+			$('#next').click(function(){
+				count++;
+				if(count>=alllength){
+					console.log("111");
+					$("#bannerul").animate({'left':parseInt(0)+'px'},function(){
+						count=0;
+					})
+				}
+				else{
+					
+					$('#bannerul').animate({'left':-parseInt(count*wid)+'px'});
+				}
+			})
+		})
+		
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
